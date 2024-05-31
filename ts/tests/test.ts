@@ -1,5 +1,5 @@
 import path from "path"
-import { runSqldef } from "../src/lib"
+import { runSqldef } from "../src/lib.js"
 import { expect } from "chai"
 
 describe("runSqldef", function() {

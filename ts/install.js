@@ -1,9 +1,10 @@
-const { execSync } = require("child_process");
-const os = require("os");
-const path = require("path");
-const fs = require("fs");
+import { execSync } from "child_process";
+import os from "os";
+import path from "path";
+import fs from "fs";
 
 const platform = os.platform();
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const goDir = path.join(__dirname, "go");
 const outputDir = path.join(__dirname, "./dist");
 let outputFile;
