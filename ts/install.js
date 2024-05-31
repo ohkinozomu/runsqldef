@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const platform = os.platform();
 const goDir = path.join(__dirname, "go");
-const outputDir = path.join(__dirname, "./");
+const outputDir = path.join(__dirname, "./dist");
 let outputFile;
 
 if (platform === "darwin") {
@@ -20,6 +20,10 @@ if (platform === "darwin") {
 if (!fs.existsSync(goDir)) {
   console.error("Go directory not found:", goDir);
   process.exit(1);
+}
+
+if (!fs.existsSync(outputDir)) {
+  fs.mkdirSync(outputDir);
 }
 
 try {
