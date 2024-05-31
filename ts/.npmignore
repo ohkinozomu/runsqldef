@@ -1,0 +1,8 @@
+tests/
+*.spec.ts
+*.test.ts
+tsconfig.json
+node_modules/
+package-lock.json
+*.map
+.DS_Store

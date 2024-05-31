@@ -1,0 +1,58 @@
+name: Node.js CI with PostgreSQL
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_DB: your_db_name
+          POSTGRES_USER: your_user
+          POSTGRES_PASSWORD: your_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: ts
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: ts
+
+    - name: Wait for PostgreSQL
+      run: until pg_isready -h localhost -p 5432 -U your_user; do sleep 1; done
+
+    - name: Run tests
+      # https://github.com/actions/runner-images/issues/4733
+      run: LD_PRELOAD="/home/runner/work/runsqldef/runsqldef/ts/libsqldef.so" npm test
+      env:
+        DB_HOST: localhost
+        DB_USER: your_user
+        DB_PASSWORD: your_password
+        DB_NAME: your_db_name
+        DB_PORT: 5432
+        SCHEMA_FILE_PATH: schema.sql
+        PGSSLMODE: disable
+      working-directory: ts
