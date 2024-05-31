@@ -46,7 +46,7 @@ jobs:
 
     - name: Run tests
       # https://github.com/actions/runner-images/issues/4733
-      run: LD_PRELOAD="/home/runner/work/runsqldef/runsqldef/ts/libsqldef.so" npm test
+      run: LD_PRELOAD="/home/runner/work/runsqldef/runsqldef/ts/dist/libsqldef.so" npm test
       env:
         DB_HOST: localhost
         DB_USER: your_user
