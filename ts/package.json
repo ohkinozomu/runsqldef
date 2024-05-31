@@ -1,6 +1,6 @@
 {
   "name": "runsqldef",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "dist/src/lib.js",
   "scripts": {
