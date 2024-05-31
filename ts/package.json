@@ -3,6 +3,7 @@
   "version": "0.0.5",
   "description": "",
   "main": "dist/src/lib.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "tsc",
     "preinstall": "node install.js",
