@@ -1,11 +1,11 @@
 {
   "name": "runsqldef",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/src/lib.js",
   "scripts": {
     "build": "tsc",
-    "install": "ts-node install.ts",
+    "preinstall": "node install.js",
     "test": "mocha --require esm --require ts-node/register --extension ts tests/**/*.ts"
   },
   "keywords": [],
@@ -23,5 +23,16 @@
     "mocha": "^10.0.0",
     "ts-node": "^10.4.0",
     "typescript": "^5.4.5"
-  }
+  },
+  "files": [
+    "dist",
+    "go",
+    "install.js",
+    "libsqldef.dylib",
+    "libsqldef.h",
+    "package.json",
+    "src",
+    "tests",
+    "tsconfig.json"
+  ]
 }
