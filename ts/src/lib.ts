@@ -5,9 +5,9 @@ import os from "os"
 export function runSqldef(dbType: string, dbName: string, user: string, password: string, host: string, port: string, schemaFilePath: string, enableDropTable: number): number {
   let libPath: string
   if (os.platform() === "darwin") {
-    libPath = path.resolve(__dirname, "../libsqldef.dylib")
+    libPath = path.resolve(__dirname, "../../libsqldef.dylib")
   } else if (os.platform() === "linux") {
-    libPath = path.resolve(__dirname, "../libsqldef.so")
+    libPath = path.resolve(__dirname, "../../libsqldef.so")
   } else {
     throw new Error(`Unsupported platform: ${os.platform()}`)
   }
