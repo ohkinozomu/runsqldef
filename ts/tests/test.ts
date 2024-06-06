@@ -1,6 +1,6 @@
 import path from "path"
 import { runSqldef } from "../src/lib"
-import { expect } from "chai"
+import assert from "assert"
 
 describe("runSqldef", function() {
   it("should run the schema tool successfully", function() {
@@ -14,6 +14,6 @@ describe("runSqldef", function() {
     const enableDropTable = process.env.ENABLE_DROP_TABLE ? parseInt(process.env.ENABLE_DROP_TABLE, 10) : 0
 
     const result = runSqldef(dbType, dbName, user, password, host, port, schemaFile, enableDropTable)
-    expect(result).to.equal(0)
+    assert.strictEqual(result, 0)
   })
 })
